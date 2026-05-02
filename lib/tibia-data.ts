@@ -204,7 +204,7 @@ export const hunts: Hunt[] = [
         kills: 309,
         amount: 1,
         mitigation: 0.0211,
-        img: "https://www.tibiawiki.com.br/images/0/03/Sulphider.gif-",
+        img: "https://www.tibiawiki.com.br/images/0/03/Sulphider.gif",
         weaknesses: { physical: 1.0, earth: 1.0, fire: 0.8, energy: 1.0, ice: 1.20, death: 0.8, holy: 1.1 },
       },
       {
