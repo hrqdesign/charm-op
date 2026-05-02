@@ -114,11 +114,10 @@ export default function TibiaCharmCalculator() {
       })
     })
     const entries = Object.entries(score).sort((a, b) => b[1] - a[1])
-    const best = entries[0]
-    return {
-      type:       best?.[0] as keyof typeof runeIcons,
-      efficiency: best ? best[1] / 1000 : 0,
-    }
+    return entries.slice(0, 3).map(([type, val]) => ({
+      type: type as keyof typeof runeIcons,
+      efficiency: val / 1000,
+    }))
   }, [hunt])
 
   const toggleCharm = (index: number) => {
@@ -246,10 +245,7 @@ export default function TibiaCharmCalculator() {
             <h2 className="text-sm font-medium uppercase tracking-wider text-neutral-500">
               Melhor Elemento
             </h2>
-            <BestElementCard
-              type={bestElementData.type}
-              efficiency={bestElementData.efficiency}
-            />
+            <BestElementCard top={bestElementData} />
           </div>
         </section>
 

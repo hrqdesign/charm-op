@@ -53,13 +53,13 @@ export function MonsterCard({ data }: MonsterCardProps) {
       </div>
 
       {/* Lado direito — charm vencedor */}
-      <div className="flex items-center justify-between gap-4 sm:flex-col sm:items-end">
+      <div className="flex items-center justify-between gap-2 sm:flex-col sm:items-end">
         {charm ? (
           <>
             {/* Badge do charm */}
             <div
               className={cn(
-                "flex items-center gap-1.5 rounded-md px-2 py-1",
+                "flex items-center gap-1.5 rounded-md px-2 py-2",
                 isSpecial
                   ? "border border-amber-500/20 bg-amber-500/10"
                   : "bg-white/[0.06]"
@@ -68,12 +68,12 @@ export function MonsterCard({ data }: MonsterCardProps) {
               <img
                 src={charmIcons[charm.name]}
                 alt={charm.name}
-                width={16}
-                height={16}
+                width={24}
+                height={24}
               />
               <span
                 className={cn(
-                  "text-xs font-medium",
+                  "text-md font-bold",
                   isSpecial ? "text-amber-400" : "text-neutral-300"
                 )}
               >
@@ -85,7 +85,7 @@ export function MonsterCard({ data }: MonsterCardProps) {
             <div className="text-right">
               <span
                 className={cn(
-                  "text-lg font-semibold",
+                  "text-sm font-semibold",
                   isSpecial ? "text-amber-400" : "text-white"
                 )}
               >
@@ -100,7 +100,7 @@ export function MonsterCard({ data }: MonsterCardProps) {
                 <span className="text-emerald-400">
                   +{new Intl.NumberFormat("en-US").format(Math.round(diff))}
                 </span>
-                {" "}a mais que{" "}
+                {" "}que{" "}
                 <span className="text-neutral-400">{runnerUp.name}</span>
               </div>
             )}
