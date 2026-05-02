@@ -178,6 +178,56 @@ export const hunts: Hunt[] = [
     ],
   },
   {
+    name: "Carrinho 01",
+    monsters: [
+      {
+        name: "Nighthunter",
+        hp: 19200,
+        kills: 480,
+        amount: 1,
+        mitigation: 0.0228,
+        img: "https://www.tibiawiki.com.br/images/e/e0/Nighthunter.gif",
+        weaknesses: { physical: 1.1, earth: 0.85, fire: 1.0, energy: 1.05, ice: 1.05, death: 0.8, holy: 1.15 },
+      },
+      {
+        name: "Undertaker",
+        hp: 20100,
+        kills: 428,
+        amount: 1,
+        mitigation: 0.0222,
+        img: "https://www.tibiawiki.com.br/images/a/a1/Undertaker.gif",
+        weaknesses: { physical: 1.15, earth: 0.9, fire: 1.0, energy: 1.1, ice: 1.05, death: 0.6, holy: 1.05 },
+      },
+      {
+        name: "Sulphider",
+        hp: 21000,
+        kills: 309,
+        amount: 1,
+        mitigation: 0.0211,
+        img: "https://www.tibiawiki.com.br/images/0/03/Sulphider.gif-",
+        weaknesses: { physical: 1.0, earth: 1.0, fire: 0.8, energy: 1.0, ice: 1.20, death: 0.8, holy: 1.1 },
+      },
+      {
+        name: "Stalking Stalk",
+        hp: 8600,
+        kills: 255,
+        amount: 1,
+        mitigation: 0.0,
+        img: "https://www.tibiawiki.com.br/images/3/39/Stalking_Stalk.gif",
+        weaknesses: { physical: 1.25, earth: 0.75, fire: 0.75, energy: 1.0, ice: 1.1, death: 0.9, holy: 1.0 },
+      },
+      {
+        name: "Sulphur Spouter",
+        hp: 8250,
+        kills: 221,
+        amount: 1,
+        mitigation: 0.0205,
+        img: "https://www.tibiawiki.com.br/images/9/9e/Sulphur_Spouter.gif",
+        weaknesses: { physical: 1.0, earth: 1.0, fire: 0.75, energy: 1.0, ice: 1.0, death: 1.0, holy: 1.2 },
+      },
+    ],
+  },
+  {
     name: "Ingol",
     monsters: [
       {
