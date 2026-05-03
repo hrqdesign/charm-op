@@ -12,6 +12,8 @@ import {
   type VocationType,
   vocations,
   runeIcons,
+  elementIcons,
+  type ElementType,
   playerHp,
   playerMana,
   calcCharmDmg,
@@ -120,6 +122,36 @@ export default function TibiaCharmCalculator() {
     }))
   }, [hunt])
 
+  // Soma total de DMG e elementos usados para o card de totais
+  const summary = useMemo(() => {
+    const totalDmg = result.reduce((acc, r) => acc + r.dps, 0)
+
+    // Conta quantas vezes cada elemento aparece nos charms alocados
+    const elementCount: Record<string, number> = {}
+    result.forEach((r) => {
+      if (!r.charm || r.charm.isSpecial) return
+      const type = r.charm.type as string
+      elementCount[type] = (elementCount[type] ?? 0) + 1
+    })
+
+    const elements = Object.entries(elementCount)
+      .sort((a, b) => b[1] - a[1])
+
+    // Média de cada elemento em todos os monstros da hunt
+    const elementAvg: Record<string, number> = {}
+    const monsterCount = hunt.monsters.length
+    hunt.monsters.forEach((m) => {
+      Object.entries(m.weaknesses).forEach(([el, val]) => {
+        elementAvg[el] = (elementAvg[el] ?? 0) + val
+      })
+    })
+    Object.keys(elementAvg).forEach((el) => {
+      elementAvg[el] = elementAvg[el] / monsterCount
+    })
+
+    return { totalDmg, elements, elementAvg }
+  }, [result, hunt])
+
   const toggleCharm = (index: number) => {
     const copy = [...charms]
     copy[index].active = !copy[index].active
@@ -165,7 +197,7 @@ export default function TibiaCharmCalculator() {
 
         <div className="h-px bg-white/[0.08]" />
 
-        {/* Vocação & Level — só aparece se Overflux ou Overpower estiverem ativos */}
+        {/* Vocação & Level */}
         {hasSpecialActive && (
           <>
             <section className="my-6 grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -260,6 +292,50 @@ export default function TibiaCharmCalculator() {
             {result.map((r, i) => (
               <MonsterCard key={i} data={r} />
             ))}
+
+            {/* Card de totais */}
+            <div className="flex flex-col gap-3 rounded-lg border border-white/[0.08] bg-neutral-900 px-4 py-3 mt-1">
+              {/* Média dos elementos */}
+              <div className="flex flex-wrap gap-x-3 gap-y-1">
+                {Object.entries(summary.elementAvg)
+                  .sort((a, b) => b[1] - a[1])
+                  .map(([type, avg]) => {
+                    const pct = Math.round(avg * 100)
+                    return (
+                      <div key={type} className="flex items-center gap-1">
+                        <img
+                          src={elementIcons[type as ElementType]}
+                          alt={type}
+                          width={13}
+                          height={13}
+                          className="shrink-0"
+                        />
+                        <span className={
+                          pct > 100 ? "text-xs font-medium text-emerald-400" :
+                          pct < 100 ? "text-xs font-medium text-red-400" :
+                          "text-xs font-medium text-neutral-500"
+                        }>
+                          {pct}%
+                        </span>
+                      </div>
+                    )
+                  })}
+              </div>
+
+              {/* Divider + Total DMG */}
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-medium uppercase tracking-wider text-neutral-500">
+                  Média da hunt
+                </span>
+                <div className="flex items-baseline gap-1.5">
+                  <span className="text-xs font-medium uppercase tracking-wider text-neutral-500">Total</span>
+                  <span className="text-xl font-bold text-white">
+                    {new Intl.NumberFormat("en-US").format(Math.round(summary.totalDmg))}
+                  </span>
+                  <span className="text-xs text-neutral-500">DMG</span>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
       </main>
