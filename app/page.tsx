@@ -294,38 +294,11 @@ export default function TibiaCharmCalculator() {
             ))}
 
             {/* Card de totais */}
-            <div className="flex flex-col gap-3 rounded-lg border border-white/[0.08] bg-neutral-900 px-4 py-3 mt-1">
-              {/* Média dos elementos */}
-              <div className="flex flex-wrap gap-x-3 gap-y-1">
-                {Object.entries(summary.elementAvg)
-                  .sort((a, b) => b[1] - a[1])
-                  .map(([type, avg]) => {
-                    const pct = Math.round(avg * 100)
-                    return (
-                      <div key={type} className="flex items-center gap-1">
-                        <img
-                          src={elementIcons[type as ElementType]}
-                          alt={type}
-                          width={13}
-                          height={13}
-                          className="shrink-0"
-                        />
-                        <span className={
-                          pct > 100 ? "text-xs font-medium text-emerald-400" :
-                          pct < 100 ? "text-xs font-medium text-red-400" :
-                          "text-xs font-medium text-neutral-500"
-                        }>
-                          {pct}%
-                        </span>
-                      </div>
-                    )
-                  })}
-              </div>
-
-              {/* Divider + Total DMG */}
+            <div className="flex flex-col gap-3 rounded-lg border border-white/[0.08] bg-neutral-900/50 p-4 mt-1 transition-colors hover:border-white/[0.12] hover:bg-neutral-900">
+              {/* Header: título + total DMG */}
               <div className="flex items-center justify-between">
                 <span className="text-xs font-medium uppercase tracking-wider text-neutral-500">
-                  Média da hunt
+                  Média da Hunt
                 </span>
                 <div className="flex items-baseline gap-1.5">
                   <span className="text-xs font-medium uppercase tracking-wider text-neutral-500">Total</span>
@@ -334,6 +307,33 @@ export default function TibiaCharmCalculator() {
                   </span>
                   <span className="text-xs text-neutral-500">DMG</span>
                 </div>
+              </div>
+
+              {/* Elementos — mesmo estilo dos cards de cima */}
+              <div className="flex flex-wrap gap-1.5">
+                {Object.entries(summary.elementAvg)
+                  .sort((a, b) => b[1] - a[1])
+                  .map(([type, avg]) => {
+                    const pct = Math.round(avg * 100)
+                    return (
+                      <div
+                        key={type}
+                        className={
+                          "inline-flex items-center gap-1 rounded border border-white/[0.08] bg-black/60 px-2 py-1 text-xs font-medium tabular-nums " +
+                          (pct > 100 ? "text-emerald-400" : pct < 100 ? "text-red-400" : "text-neutral-500")
+                        }
+                      >
+                        <img
+                          src={elementIcons[type as ElementType]}
+                          alt={type}
+                          width={12}
+                          height={12}
+                          className="shrink-0"
+                        />
+                        <span>{pct}%</span>
+                      </div>
+                    )
+                  })}
               </div>
             </div>
           </div>
