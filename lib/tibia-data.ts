@@ -286,6 +286,38 @@ export const hunts: Hunt[] = [
       },
     ],
   },
+  {
+    name: "Nimmersatts",
+    monsters: [
+      {
+        name: "Wardragon",
+        hp: 6960,
+        kills: 505,
+        amount: 1,
+        mitigation: 0.0219,
+        img: "https://www.tibiawiki.com.br/wiki/Arquivo:Wardragon.gif",
+        weaknesses: { physical: 1.0, earth: 1.1, fire: 0.6, energy: 1.05, ice: 1.05, death: 0.85, holy: 1.1 },
+      },
+      {
+        name: "Dragolisk",
+        hp: 6180,
+        kills: 459,
+        amount: 1,
+        mitigation: 0.0211,
+        img: "https://www.tibiawiki.com.br/wiki/Arquivo:Dragolisk.gif",
+        weaknesses: { physical: 0.85, earth: 1.1, fire: 0.6, energy: 1.0, ice: 1.05, death: 1.1, holy: 1.15 },
+      },
+      {
+        name: "Mega Dragon",
+        hp: 7920,
+        kills: 330,
+        amount: 1,
+        mitigation: 0.0196,
+        img: "https://www.tibiawiki.com.br/wiki/Arquivo:Mega_Dragon.gif",
+        weaknesses: { physical: 1.0, earth: 1.1, fire: 0.8, energy: 1.1, ice: 0.8, death: 0.8, holy: 1.1 },
+      },
+    ],
+  },
 ]
 
 export const allCharms: Omit<Charm, "active" | "level">[] = [
