@@ -28,8 +28,8 @@ import {
 
 export default function TibiaCharmCalculator() {
   const [huntIndex, setHuntIndex]     = useState(0)
-  const [vocation, setVocation]       = useState<VocationType>("knight")
-  const [playerLevel, setPlayerLevel] = useState(100)
+  const [vocation, setVocation]       = useState<VocationType>("sorcerer")
+  const [playerLevel, setPlayerLevel] = useState(1500)
   const [charms, setCharms]           = useState<Charm[]>(
     allCharms.map((c) => ({ ...c, active: true, level: 2 }))
   )
